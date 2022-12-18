@@ -1,0 +1,21 @@
+# Add 'repo' label to any root file changes
+   repo:
+     - '*'
+# Add '@apps/service' label to any change within the 'apps' directory
+   apps/service:
+     - 'apps/**'
+# Add '@libs' label to any change within the 'libs' directory
+   libs:
+     - 'libs/**'
+# Add 'test' label to any change to a test file
+   test:
+     - '**/*.spec.ts'
+     - '**/src/test/**'
+
+# Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
+   source:
+     - any: ['**/src/**/*', '!**/src/docs/**/*']
+
+# Add 'frontend` label to any change to *.js, *.ts or *.tsx files within the source dir
+   frontend:
+     - any: ['src/**/*.js', 'src/**/*.ts', 'src/**/*.tsx']
