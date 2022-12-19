@@ -2,7 +2,7 @@ plugins {
     id("com.gradle.enterprise") version("3.10.3")
 }
 
-rootProject.name = "gradle-kotlin-spring-starter"
+rootProject.name = "Astrum"
 
 val apps = File("apps")
 val libs = File("libs")
