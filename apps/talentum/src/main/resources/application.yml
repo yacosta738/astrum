@@ -1,8 +1,5 @@
 server:
   port: 8080
-app:
-  security:
-    clientId: "web_app"
 
 spring:
   security:
@@ -10,3 +7,9 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:9080/realms/astrum
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+app:
+  security:
+    clientId: "web_app"
+  cors:
+    allowed-origins: http://localhost:3000

@@ -1,4 +1,4 @@
-package com.astrum.talentum
+package com.astrum.talentum.controller
 
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.annotation.AuthenticationPrincipal
