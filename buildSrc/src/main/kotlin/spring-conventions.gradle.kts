@@ -19,6 +19,9 @@ apply(plugin = "org.springframework.boot")
 logger.lifecycle("Enabling Spring Boot Dependency Management in module ${project.path}")
 apply(plugin = "io.spring.dependency-management")
 
+
+tasks.getByName("classes").dependsOn("bootBuildInfo")
+
 springBoot {
     // Creates META-INF/build-info.properties for Spring Boot Actuator
     buildInfo()
