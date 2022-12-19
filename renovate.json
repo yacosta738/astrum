@@ -3,10 +3,20 @@
   "extends": [
     "config:base",
     ":prHourlyLimitNone",
-    "group:recommended"
+    "group:recommended",
+    ":reviewer(arg0)"
   ],
   "stabilityDays": 14,
   "prCreation": "not-pending",
+  "baseBranches": [
+    "develop"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "reviewers": [
+    "renovate-bot"
+  ],
   "packageRules": [
     {
       "groupName": "kotlin",
