@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  neo4j:
+    extends:
+      file: neo4j/neo4j.yml
+      service: neo4j
+
+  postgres:
+    extends:
+      file: postgresql/postgresql.yml
+      service: postgres
+
+  keycloak:
+    extends:
+      file: keycloak/keycloak.yml
+      service: keycloak

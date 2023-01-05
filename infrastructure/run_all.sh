@@ -1,0 +1,1 @@
+docker-compose -f all.yml -p astrum up -d

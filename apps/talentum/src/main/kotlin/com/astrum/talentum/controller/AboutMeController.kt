@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono
 
 
 @RestController
-@RequestMapping("/api/me")
+@RequestMapping("/api/profile")
 class AboutMeController {
     @GetMapping
     fun claims(@AuthenticationPrincipal auth: JwtAuthenticationToken): Mono<Map<String, Any>> {
@@ -24,13 +24,13 @@ class AboutMeController {
 
     @GetMapping("/role_admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    fun role_admin(): Mono<String> {
+    fun roleAdmin(): Mono<String> {
         return Mono.just("ROLE_ADMIN")
     }
 
     @GetMapping("/scope_messages_read")
     @PreAuthorize("hasAuthority('SCOPE_MESSAGES:READ')")
-    fun scope_api_me_read(): Mono<String> {
+    fun scopeApiMeRead(): Mono<String> {
         return Mono.just("You have 'MESSAGES:READ' scope")
     }
 }

@@ -1,3 +1,6 @@
+import java.time.Instant
+import java.time.Instant.EPOCH
+
 plugins {
     id("java-conventions")
 
@@ -22,7 +25,12 @@ apply(plugin = "io.spring.dependency-management")
 
 tasks.getByName("classes").dependsOn("bootBuildInfo")
 
-springBoot {
-    // Creates META-INF/build-info.properties for Spring Boot Actuator
-    buildInfo()
+tasks.register<org.springframework.boot.gradle.tasks.buildinfo.BuildInfo>("bootBuildInfo") {
+    properties {
+        time = EPOCH
+    }
+}
+
+tasks.named("classes") {
+    dependsOn("bootBuildInfo")
 }

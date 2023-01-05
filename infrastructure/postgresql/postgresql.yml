@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: keycloak_db
+      POSTGRES_USER: my_admin
+      POSTGRES_PASSWORD: my_password
+    ports:
+      - "5432:5432"
