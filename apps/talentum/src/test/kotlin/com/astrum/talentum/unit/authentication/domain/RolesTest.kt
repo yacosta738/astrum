@@ -1,7 +1,7 @@
 package com.astrum.talentum.unit.authentication.domain
 
-import com.astrum.talentum.authentication.domain.Role
-import com.astrum.talentum.authentication.domain.Roles
+import com.astrum.authentication.domain.Role
+import com.astrum.authentication.domain.Roles
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue

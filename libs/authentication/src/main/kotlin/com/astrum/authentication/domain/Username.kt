@@ -1,8 +1,8 @@
-package com.astrum.talentum.authentication.domain
+package com.astrum.authentication.domain
 
+import com.astrum.authentication.domain.exceptions.UserNameNotValidException
 import com.astrum.common.domain.BaseValidateValueObject
 import com.astrum.common.domain.BaseValueObject
-import com.astrum.talentum.authentication.domain.exceptions.UserNameNotValidException
 import java.util.*
 
 private const val MIN_LENGTH = 3

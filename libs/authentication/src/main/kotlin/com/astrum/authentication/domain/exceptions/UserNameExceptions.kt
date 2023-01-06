@@ -1,4 +1,4 @@
-package com.astrum.talentum.authentication.domain.exceptions
+package com.astrum.authentication.domain.exceptions
 
 sealed class InvalidArgumentUserNameException(
     override val message: String,

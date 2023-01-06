@@ -1,6 +1,6 @@
 package com.astrum.talentum.unit.authentication.domain
 
-import com.astrum.talentum.authentication.domain.Username
+import com.astrum.authentication.domain.Username
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

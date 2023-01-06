@@ -1,4 +1,4 @@
-package com.astrum.talentum.authentication.domain
+package com.astrum.authentication.domain
 
 import java.util.stream.Stream
 

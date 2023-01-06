@@ -1,4 +1,4 @@
-package com.astrum.talentum.authentication.domain
+package com.astrum.authentication.domain
 
 enum class Role {
     ADMIN,
