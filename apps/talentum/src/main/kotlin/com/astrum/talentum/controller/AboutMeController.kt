@@ -22,14 +22,14 @@ class AboutMeController {
         return Mono.just(auth.token.tokenValue)
     }
 
-    @GetMapping("/role_admin")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/role/admin")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     fun roleAdmin(): Mono<String> {
         return Mono.just("ROLE_ADMIN")
     }
 
-    @GetMapping("/scope_messages_read")
-    @PreAuthorize("hasAuthority('SCOPE_MESSAGES:READ')")
+    @GetMapping("/scope/messages/read")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     fun scopeApiMeRead(): Mono<String> {
         return Mono.just("You have 'MESSAGES:READ' scope")
     }
