@@ -32,6 +32,7 @@ import java.util.function.*
 private const val PERMISSIONS_POLICY =
     "camera=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), sync-xhr=()"
 
+@Configuration
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
 @Import(SecurityProblemSupport::class)
@@ -65,15 +66,21 @@ class SecurityConfiguration(
                 authenticationEntryPoint = problemSupport
             }
             authorizeExchange {
+                authorize("/", permitAll)
+                authorize("/*.*", permitAll)
+                authorize("/api/authenticate", permitAll)
+                authorize("/api/auth-info", permitAll)
                 authorize("/ping", permitAll)
                 authorize("/swagger-ui.html", permitAll)
                 authorize("/swagger-ui/**", permitAll)
                 authorize("/v3/api-docs/**", permitAll)
                 authorize("/hello", authenticated)
                 authorize("/api/profile", authenticated)
-                authorize("/api/profile/token", authenticated)
+                authorize("/api/admin/**", hasAnyRole("ADMIN"))
                 authorize("/api/profile/role/admin", hasAnyRole("ADMIN"))
                 authorize("/api/profile/scope/messages/read", hasAnyAuthority("ROLE_ADMIN"))
+                authorize("/api/**", authenticated)
+                authorize("/services/**", authenticated)
                 authorize(anyExchange, authenticated)
             }
             oauth2Login {

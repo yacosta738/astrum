@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 
 
-@SpringBootApplication(scanBasePackages = ["com.astrum"])
+@SpringBootApplication(scanBasePackages = ["com.astrum.*"])
 @EnableConfigurationProperties
 class TalentumApplication
 
