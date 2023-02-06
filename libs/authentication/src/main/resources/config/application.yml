@@ -1,0 +1,13 @@
+com.astrum.springaddons.security:
+  issuers[0]:
+    location: ${JWT_ISSUER_URI}
+    authorities:
+      claims: realm_access.roles,resource_access.spring-addons-public.roles,resource_access.spring-addons-confidential.roles
+  cors[0]:
+    path: /${API_PATH}/**
+    allowed-origins: https://localhost,https://localhost:8100,https://localhost:4200
+    # following are defaults. Uncomment to override
+    #allowedOrigins=*
+    #allowedMethods=*
+    #allowedHeaders=*
+    #exposedHeaders=*

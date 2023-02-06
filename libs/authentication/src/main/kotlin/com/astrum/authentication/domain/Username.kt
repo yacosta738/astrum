@@ -21,7 +21,7 @@ data class Username(val username: String) : BaseValidateValueObject<String>(user
      * if it's greater than [other].
      */
     override fun compareTo(other: BaseValueObject<String>): Int {
-        TODO("Not yet implemented")
+        return username.compareTo(other.value)
     }
 
     companion object {

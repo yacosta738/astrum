@@ -1,8 +1,9 @@
 package com.astrum.talentum
 
+import org.springframework.boot.WebApplicationType
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.boot.context.properties.EnableConfigurationProperties
-import org.springframework.boot.runApplication
 
 
 @SpringBootApplication(scanBasePackages = ["com.astrum.*"])
@@ -10,5 +11,7 @@ import org.springframework.boot.runApplication
 class TalentumApplication
 
 fun main(vararg args: String) {
-    runApplication<TalentumApplication>(*args)
+    SpringApplicationBuilder(TalentumApplication::class.java)
+        .web(WebApplicationType.REACTIVE)
+        .run(*args)
 }

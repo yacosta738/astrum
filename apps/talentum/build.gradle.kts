@@ -31,4 +31,17 @@ dependencies {
     // T E S T   D E P E N D E N C I E S
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+
+    val os =
+        org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem()
+    val arch =
+        org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentArchitecture()
+    if (os.isMacOsX && !arch.isAmd64) {
+        implementation("io.netty:netty-resolver-dns-native-macos") {
+            artifact {
+                classifier = "osx-aarch_64"
+            }
+        }
+    }
+
 }

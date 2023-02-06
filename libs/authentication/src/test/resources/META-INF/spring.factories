@@ -1,0 +1,1 @@
+org.springframework.test.context.ContextCustomizerFactory=com.astrum.authentication.infrastructure.config.TestContainersSpringContextCustomizerFactory

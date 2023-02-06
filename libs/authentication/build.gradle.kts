@@ -24,8 +24,14 @@ dependencies {
     // 3 R D   P A R T Y
     implementation(libs.bundles.kotlinLogging)
     implementation("eu.michael-simons.neo4j:neo4j-migrations-spring-boot-starter:2.0.3")
+    implementation("com.github.ben-manes.caffeine:caffeine:3.1.2")
 
 
     // T E S T   D E P E N D E N C I E S
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.testcontainers:junit-jupiter:1.17.6")
+    testImplementation("org.testcontainers:testcontainers:1.17.6")
+    testImplementation("org.testcontainers:neo4j:1.17.6")
 }
