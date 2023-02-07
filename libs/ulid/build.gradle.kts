@@ -6,6 +6,7 @@ plugins {
 }
 val jackson_version: String by project
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("com.fasterxml.jackson.core:jackson-core:$jackson_version")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_version")
 }

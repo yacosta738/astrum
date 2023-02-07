@@ -3,6 +3,9 @@ package com.astrum.ulid
 import java.io.Serializable
 import java.security.SecureRandom
 
+/**
+ * A Universally Unique Lexicographically Sortable Identifier (ULID).
+ */
 class ULID(
     private val mostSignificantBits: Long,
     private val leastSignificantBits: Long
