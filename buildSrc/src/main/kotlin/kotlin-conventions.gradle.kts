@@ -4,6 +4,7 @@ import com.acosta.education.gradle.constant.JDK_VERSION
 import com.acosta.education.gradle.constant.KOTLIN_VERSION
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
+val coroutines_version: String by project
 
 plugins {
     id("java-conventions")
@@ -66,7 +67,12 @@ dependencies {
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     }
-
+    implementation(kotlin("stdlib"))
+    implementation(kotlin("reflect"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$coroutines_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:$coroutines_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutines_version")
     // Align versions of all Kotlin components
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
 
