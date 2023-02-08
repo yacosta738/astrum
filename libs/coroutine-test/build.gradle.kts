@@ -2,7 +2,6 @@ plugins {
     id("kotlin-conventions")
     id("testing-conventions")
     id("dokka-conventions")
-    id("spring-conventions")
 }
 
 val projectreactor_version: String by project
