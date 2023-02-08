@@ -11,7 +11,6 @@ val kotlinLoggingVersion: String by rootProject.extra
 dependencies {
     // L O C A L   D E P E N D E N C I E S
     implementation(project(":shared"))
-    implementation(project(":authentication"))
 
     // S P R I N G
     implementation("org.springframework.boot:spring-boot-starter-webflux")
