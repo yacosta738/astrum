@@ -10,6 +10,7 @@ import java.util.*
 class OptionalTest {
     private val faker = Faker(SecureRandom())
 
+    @Suppress("UNUSED_EXPRESSION")
     @Test
     fun resolveNotNull() {
         faker.random().hex().let {

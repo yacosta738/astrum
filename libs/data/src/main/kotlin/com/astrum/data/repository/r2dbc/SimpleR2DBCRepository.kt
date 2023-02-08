@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.astrum.data.repository.r2dbc
 
 import com.astrum.data.annotation.GeneratedValue
