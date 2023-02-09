@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <CurrentIssues>
+    <ID>IteratorNotThrowingNoSuchElementException:Reversed.kt$Reversed$&lt;no name provided> :
+      Iterator
+    </ID>
+    <ID>ReturnCount:Optional.kt$inline fun &lt;T> resolve(optional: Optional&lt;T>?, value: () ->
+      T?): T?
+    </ID>
+    <ID>TooGenericExceptionCaught:Async.kt$e: Exception</ID>
+    <ID>TooGenericExceptionThrown:AsyncTest.kt$AsyncTest$throw RuntimeException()</ID>
+    <ID>TooGenericExceptionThrown:Optional.kt$throw RuntimeException("it must be present.")</ID>
+  </CurrentIssues>
+  <ManuallySuppressedIssues/>
+</SmellBaseline>

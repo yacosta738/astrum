@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <CurrentIssues>
+    <ID>FinalNewline:com.astrum.talentum.controller.HelloController.kt:1</ID>
+    <ID>FinalNewline:com.astrum.talentum.unit.user.EmailTest.kt:1</ID>
+    <ID>FinalNewline:com.astrum.talentum.unit.user.FirstNameTest.kt:1</ID>
+    <ID>FinalNewline:com.astrum.talentum.unit.user.LastNameTest.kt:1</ID>
+    <ID>FinalNewline:com.astrum.talentum.unit.user.NameTest.kt:1</ID>
+    <ID>FinalNewline:com.astrum.talentum.user.Email.kt:1</ID>
+    <ID>FinalNewline:com.astrum.talentum.user.FirstName.kt:1</ID>
+    <ID>FinalNewline:com.astrum.talentum.user.LastName.kt:1</ID>
+    <ID>FinalNewline:com.astrum.talentum.user.Name.kt:1</ID>
+    <ID>FunctionOnlyReturningConstant:PingController.kt$PingController$@GetMapping fun ping()</ID>
+    <ID>ImplicitDefaultLocale:HelloController.kt$HelloController$String.format("Hello %s!",
+      auth.name)
+    </ID>
+    <ID>ImportOrdering:com.astrum.talentum.controller.HelloController.kt:3</ID>
+    <ID>Indentation:com.astrum.talentum.unit.user.EmailTest.kt:49</ID>
+    <ID>MagicNumber:ApplicationStartupTraces.kt$ApplicationStartupTraces$58</ID>
+    <ID>NewLineAtEndOfFile:Email.kt$com.astrum.talentum.user.Email.kt</ID>
+    <ID>NewLineAtEndOfFile:EmailTest.kt$com.astrum.talentum.unit.user.EmailTest.kt</ID>
+    <ID>NewLineAtEndOfFile:FirstName.kt$com.astrum.talentum.user.FirstName.kt</ID>
+    <ID>NewLineAtEndOfFile:FirstNameTest.kt$com.astrum.talentum.unit.user.FirstNameTest.kt</ID>
+    <ID>NewLineAtEndOfFile:HelloController.kt$com.astrum.talentum.controller.HelloController.kt</ID>
+    <ID>NewLineAtEndOfFile:LastName.kt$com.astrum.talentum.user.LastName.kt</ID>
+    <ID>NewLineAtEndOfFile:LastNameTest.kt$com.astrum.talentum.unit.user.LastNameTest.kt</ID>
+    <ID>NewLineAtEndOfFile:Name.kt$com.astrum.talentum.user.Name.kt</ID>
+    <ID>NewLineAtEndOfFile:NameTest.kt$com.astrum.talentum.unit.user.NameTest.kt</ID>
+    <ID>NoBlankLineBeforeRbrace:com.astrum.talentum.user.Email.kt:44</ID>
+    <ID>NoBlankLineBeforeRbrace:com.astrum.talentum.user.FirstName.kt:54</ID>
+    <ID>NoBlankLineBeforeRbrace:com.astrum.talentum.user.LastName.kt:21</ID>
+    <ID>NoBlankLineBeforeRbrace:com.astrum.talentum.user.LastName.kt:48</ID>
+    <ID>NoConsecutiveBlankLines:com.astrum.talentum.TalentumApplication.kt:8</ID>
+    <ID>NoConsecutiveBlankLines:com.astrum.talentum.controller.HelloController.kt:10</ID>
+    <ID>SpreadOperator:ApplicationStartupTraces.kt$ApplicationStartupTraces$(*profiles)</ID>
+    <ID>SwallowedException:ApplicationStartupTraces.kt$ApplicationStartupTraces$e:
+      UnknownHostException
+    </ID>
+    <ID>
+      TooManyFunctions:ApplicationStartupTraces.kt$ApplicationStartupTraces$ApplicationStartupTraces
+    </ID>
+  </CurrentIssues>
+  <ManuallySuppressedIssues/>
+</SmellBaseline>

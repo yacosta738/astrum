@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <CurrentIssues>
+    <ID>FunctionParameterNaming:ULID.kt$ULID.Companion$ULID: Long</ID>
+    <ID>Indentation:com.astrum.ulid.ULID.kt:53</ID>
+    <ID>Indentation:com.astrum.ulid.ULID.kt:54</ID>
+    <ID>Indentation:com.astrum.ulid.ULID.kt:55</ID>
+    <ID>MagicNumber:ULID.kt$ULID$0xFF</ID>
+    <ID>MagicNumber:ULID.kt$ULID$0xFFFFL</ID>
+    <ID>MagicNumber:ULID.kt$ULID$10</ID>
+    <ID>MagicNumber:ULID.kt$ULID$15</ID>
+    <ID>MagicNumber:ULID.kt$ULID$16</ID>
+    <ID>MagicNumber:ULID.kt$ULID$18</ID>
+    <ID>MagicNumber:ULID.kt$ULID$24</ID>
+    <ID>MagicNumber:ULID.kt$ULID$26</ID>
+    <ID>MagicNumber:ULID.kt$ULID$40</ID>
+    <ID>MagicNumber:ULID.kt$ULID$7</ID>
+    <ID>MagicNumber:ULID.kt$ULID$8</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$0xFF</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$0xFFFF</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$10</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$12</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$15</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$16</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$18</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$24</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$26</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$40</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$7</ID>
+    <ID>MagicNumber:ULID.kt$ULID.Companion$8</ID>
+    <ID>VariableNaming:ULID.kt$ULID$val ULID = other as ULID</ID>
+    <ID>VariableNaming:ULID.kt$ULID$var ULID = mostSignificantBits and 0xFFFFL shl 24</ID>
+  </CurrentIssues>
+  <ManuallySuppressedIssues/>
+</SmellBaseline>
