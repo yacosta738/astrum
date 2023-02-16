@@ -13,6 +13,7 @@ val jackson_version: String by project
 val json_patch_version: String by project
 val bson_version: String by project
 val embed_mongo_version: String by project
+val embed_neo4j_version: String by project
 
 dependencies {
     implementation(project(":ulid"))
@@ -36,6 +37,7 @@ dependencies {
     implementation("io.r2dbc:r2dbc-pool")
     implementation("org.postgresql:r2dbc-postgresql")
     implementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:$embed_mongo_version")
+    implementation("org.neo4j:neo4j:$embed_neo4j_version")
 
     runtimeOnly("com.h2database:h2")
 
