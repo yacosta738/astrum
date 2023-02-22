@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <CurrentIssues>
+    <ID>FinalNewline:com.astrum.common.domain.BaseId.kt:1</ID>
+    <ID>FinalNewline:com.astrum.common.domain.Generated.kt:1</ID>
+    <ID>NewLineAtEndOfFile:BaseId.kt$com.astrum.common.domain.BaseId.kt</ID>
+    <ID>NewLineAtEndOfFile:Generated.kt$com.astrum.common.domain.Generated.kt</ID>
+    <ID>NoConsecutiveBlankLines:com.astrum.common.domain.BaseId.kt:3</ID>
+    <ID>NoConsecutiveBlankLines:com.astrum.common.domain.BaseValueObject.kt:5</ID>
+  </CurrentIssues>
+  <ManuallySuppressedIssues/>
+</SmellBaseline>

@@ -22,4 +22,8 @@ abstract class BaseValueObject<T> protected constructor(val value: T) :
     override fun toString(): String {
         return value.toString()
     }
+
+    companion object {
+        private const val serialVersionUID = 1L
+    }
 }

@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <CurrentIssues>
+    <ID>ClassNaming:Neo4jMigrations.kt$Neo4jMigrations$V0001__CreateUsers : JavaBasedMigration</ID>
+    <ID>CommentSpacing:com.astrum.data.expansion.KProperty.kt:21</ID>
+    <ID>CommentSpacing:com.astrum.data.expansion.KProperty.kt:29</ID>
+    <ID>ComplexCondition:CachedQueryableRepository.kt$CachedQueryableRepository$criteria != null
+      &amp;&amp; limit == null &amp;&amp; offset == null &amp;&amp; sort == null
+    </ID>
+    <ID>ComplexMethod:CachedQueryableRepository.kt$CachedQueryableRepository$override fun
+      findAll(criteria: Criteria?, limit: Int?, offset: Long?, sort: Sort?): Flow&lt;T>
+    </ID>
+    <ID>ComplexMethod:R2DBCCriteriaParser.kt$R2DBCCriteriaParser$override fun parse(criteria:
+      Criteria): R2DBCCriteria
+    </ID>
+    <ID>ComplexMethod:RuntimeCriteriaParser.kt$RuntimeCriteriaParser$override fun parse(criteria:
+      Criteria): ((T) -> Boolean)?
+    </ID>
+    <ID>EmptyFunctionBlock:DataTestHelper.kt$DataTestHelper${ }</ID>
+    <ID>
+      ExplicitItLambdaParameter:PoolingNestedStorage.kt$PoolingNestedStorage${ i, it -> if (it != null) { result[i] = it }
+      }
+    </ID>
+    <ID>Filename:com.astrum.data.configuration.Neo4jConfiguration.kt:1</ID>
+    <ID>FunctionNaming:CriteriaStep.kt$CriteriaStep$fun `in`(value: List&lt;Any?>)</ID>
+    <ID>FunctionNaming:CriteriaStep.kt$CriteriaStep$fun `in`(vararg value: Any?)</ID>
+    <ID>FunctionNaming:CriteriaStep.kt$CriteriaStep$fun `is`(value: Any?)</ID>
+    <ID>Indentation:com.astrum.data.expansion.KProperty.kt:34</ID>
+    <ID>Indentation:com.astrum.data.expansion.KProperty.kt:35</ID>
+    <ID>Indentation:com.astrum.data.expansion.KProperty.kt:36</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:14</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:15</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:17</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:18</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:20</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:21</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:22</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:28</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:29</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:31</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:32</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:34</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:35</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateMigrationCheckpoint.kt:36</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateUpdatedAtFunction.kt:12</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateUpdatedAtFunction.kt:13</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateUpdatedAtFunction.kt:14</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateUpdatedAtFunction.kt:15</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateUpdatedAtFunction.kt:16</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateUpdatedAtFunction.kt:17</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateUpdatedAtFunction.kt:35</ID>
+    <ID>Indentation:com.astrum.data.migration.CreateUpdatedAtFunction.kt:36</ID>
+    <ID>Indentation:com.astrum.data.migration.Migration.kt:23</ID>
+    <ID>Indentation:com.astrum.data.migration.Migration.kt:30</ID>
+    <ID>Indentation:com.astrum.data.migration.Migration.kt:37</ID>
+    <ID>Indentation:com.astrum.data.migration.Migration.kt:44</ID>
+    <ID>Indentation:com.astrum.data.migration.Migration.kt:45</ID>
+    <ID>Indentation:com.astrum.data.migration.Neo4jMigrations.kt:45</ID>
+    <ID>Indentation:com.astrum.data.migration.Neo4jMigrations.kt:46</ID>
+    <ID>Indentation:com.astrum.data.migration.Neo4jMigrations.kt:47</ID>
+    <ID>Indentation:com.astrum.data.migration.Neo4jMigrations.kt:48</ID>
+    <ID>Indentation:com.astrum.data.repository.in_memory.SimpleInMemoryRepository.kt:34</ID>
+    <ID>Indentation:com.astrum.data.repository.in_memory.SimpleInMemoryRepository.kt:35</ID>
+    <ID>Indentation:com.astrum.data.repository.in_memory.SimpleInMemoryRepository.kt:36</ID>
+    <ID>Indentation:com.astrum.data.repository.r2dbc.migration.CreatePerson.kt:17</ID>
+    <ID>Indentation:com.astrum.data.repository.r2dbc.migration.CreatePerson.kt:18</ID>
+    <ID>Indentation:com.astrum.data.repository.r2dbc.migration.CreatePerson.kt:20</ID>
+    <ID>Indentation:com.astrum.data.repository.r2dbc.migration.CreatePerson.kt:21</ID>
+    <ID>Indentation:com.astrum.data.repository.r2dbc.migration.CreatePerson.kt:23</ID>
+    <ID>Indentation:com.astrum.data.repository.r2dbc.migration.CreatePerson.kt:24</ID>
+    <ID>Indentation:com.astrum.data.repository.r2dbc.migration.CreatePerson.kt:25</ID>
+    <ID>Indentation:com.astrum.data.repository.r2dbc.migration.CreatePerson.kt:26</ID>
+    <ID>LongMethod:CacheTransactionSynchronizationTest.kt$CacheTransactionSynchronizationTest$@Test
+      fun afterCompletion()
+    </ID>
+    <ID>LongMethod:R2DBCCriteriaParserTest.kt$R2DBCCriteriaParserTest$@Test fun parse()</ID>
+    <ID>LongMethod:RuntimeCriteriaParserTest.kt$RuntimeCriteriaParserTest$@Test fun parse()</ID>
+    <ID>LongParameterList:RedisStorage.kt$RedisStorage$( redisClient: RedissonClient, name: String,
+      private val size: Int, private val objectMapper: ObjectMapper, private val id: WeekProperty&lt;T,
+      ID?>, private val expiredAt: WeekProperty&lt;T, Instant?>, private val keyClass: KClass&lt;ID>,
+      private val valueClass: KClass&lt;T>, )
+    </ID>
+    <ID>MagicNumber:QueryAggregator.kt$QueryAggregator$500</ID>
+    <ID>MagicNumber:R2DBCRepositoryBuilder.kt$R2DBCRepositoryBuilder$1024</ID>
+    <ID>MatchingDeclarationName:Neo4jConfiguration.kt$DatabaseConfiguration</ID>
+    <ID>PackageNaming:InMemoryRepository.kt$package com.astrum.data.repository.in_memory</ID>
+    <ID>PackageNaming:SimpleInMemoryRepository.kt$package com.astrum.data.repository.in_memory</ID>
+    <ID>PackageNaming:SimpleInMemoryRepositoryTest.kt$package com.astrum.data.repository.in_memory
+    </ID>
+    <ID>ReturnCount:CachedQueryableRepository.kt$CachedQueryableRepository$private fun
+      getSimpleJoinedColumnsAndValues(criteria: Criteria): Pair&lt;MutableList&lt;String>,
+      MutableList&lt;Any?>>?
+    </ID>
+    <ID>ReturnCount:CachedQueryableRepository.kt$CachedQueryableRepository$private suspend fun
+      getUniqueIndexNameAndValue(criteria: Criteria?): Pair&lt;String, Any>?
+    </ID>
+    <ID>ReturnCount:EntityManager.kt$EntityManager$private fun getArrayValue(value: Parameter,
+      property: RelationalPersistentProperty): Parameter
+    </ID>
+    <ID>ReturnCount:EntityManager.kt$EntityManager$private fun shouldConvertArrayValue( property:
+      RelationalPersistentProperty, value: Parameter ): Boolean
+    </ID>
+    <ID>ReturnCount:InMemoryStorage.kt$InMemoryStorage$override suspend fun &lt;KEY : Any>
+      getIfPresent(index: String, key: KEY): T?
+    </ID>
+    <ID>ReturnCount:PoolingNestedStorage.kt$PoolingNestedStorage$private suspend fun load(loader:
+      suspend () -> T?): T?
+    </ID>
+    <ID>ReturnCount:R2DBCCriteriaParser.kt$R2DBCCriteriaParser$private fun parse(criteria:
+      Criteria.And): R2DBCCriteria
+    </ID>
+    <ID>ReturnCount:R2DBCCriteriaParser.kt$R2DBCCriteriaParser$private fun parse(criteria:
+      Criteria.Or): R2DBCCriteria
+    </ID>
+    <ID>ReturnCount:SimpleR2DBCRepository.kt$SimpleR2DBCRepository$override suspend fun
+      update(entity: T, patch: SuspendPatch&lt;T>): T?
+    </ID>
+    <ID>ReturnCount:Status.kt$Status.Companion$fun nullableAdd(a: Long?, b: Long?): Long?</ID>
+    <ID>ReturnCount:TransactionalStorageProvider.kt$TransactionalStorageProvider$suspend fun get():
+      S
+    </ID>
+    <ID>SpreadOperator:RedisStorage.kt$RedisStorage$(*keys.toTypedArray())</ID>
+    <ID>SwallowedException:MigrationManager.kt$MigrationManager$e: DataIntegrityViolationException
+    </ID>
+    <ID>SwallowedException:SuspendTransactionContextHolder.kt$SuspendTransactionContextHolder$e:
+      NoTransactionException
+    </ID>
+    <ID>SwallowedException:TransactionalStorageProvider.kt$TransactionalStorageProvider$e:
+      NoTransactionException
+    </ID>
+    <ID>
+      ThrowingExceptionsWithoutMessageOrCause:R2DBCCriteriaParser.kt$R2DBCCriteriaParser$RuntimeException()
+    </ID>
+    <ID>
+      ThrowingExceptionsWithoutMessageOrCause:SimpleInMemoryRepository.kt$SimpleInMemoryRepository$RuntimeException()
+    </ID>
+    <ID>TooGenericExceptionCaught:MigrationManager.kt$MigrationManager$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:MigrationManager.kt$MigrationManager$e: RuntimeException</ID>
+    <ID>
+      TooGenericExceptionCaught:ReactiveChainedTransactionManager.kt$ReactiveChainedTransactionManager$ex2:
+      Exception
+    </ID>
+    <ID>
+      TooGenericExceptionCaught:ReactiveChainedTransactionManager.kt$ReactiveChainedTransactionManager$ex:
+      Exception
+    </ID>
+    <ID>TooGenericExceptionThrown:KProperty.kt$throw RuntimeException("Can't find id column in
+      ${clazz.simpleName}")
+    </ID>
+    <ID>TooGenericExceptionThrown:MigrationManager.kt$MigrationManager$throw
+      RuntimeException("Migration Checkpoints[@$version] is conflict.")
+    </ID>
+    <ID>TooGenericExceptionThrown:MigrationManager.kt$MigrationManager$throw
+      RuntimeException("Migration Checkpoints[@$version] is rejected.")
+    </ID>
+    <ID>TooGenericExceptionThrown:R2DBCCriteriaParser.kt$R2DBCCriteriaParser$throw
+      RuntimeException()
+    </ID>
+    <ID>TooGenericExceptionThrown:R2DBCRepositoryTestHelper.kt$R2DBCRepositoryTestHelper$throw
+      RuntimeException()
+    </ID>
+    <ID>TooGenericExceptionThrown:SimpleInMemoryRepository.kt$SimpleInMemoryRepository$throw
+      RuntimeException()
+    </ID>
+    <ID>
+      TooGenericExceptionThrown:TransactionalQueryableRepositoryTestHelper.kt$TransactionalQueryableRepositoryTestHelper$throw
+      RuntimeException()
+    </ID>
+    <ID>TooManyFunctions:CachedQueryableRepository.kt$CachedQueryableRepository&lt;T : Any, ID :
+      Any> : QueryableRepositoryRepository
+    </ID>
+    <ID>TooManyFunctions:CriteriaStep.kt$CriteriaStep</ID>
+    <ID>TooManyFunctions:InMemoryStorage.kt$InMemoryStorage&lt;ID : Any, T : Any> : Storage</ID>
+    <ID>TooManyFunctions:PoolingNestedStorage.kt$PoolingNestedStorage&lt;ID : Any, T : Any> :
+      NestedStorage
+    </ID>
+    <ID>TooManyFunctions:QueryCachedRepository.kt$QueryCachedRepository&lt;T : Any, ID : Any> :
+      QueryableRepository
+    </ID>
+    <ID>TooManyFunctions:R2DBCCriteriaParser.kt$R2DBCCriteriaParser&lt;T : Any> : CriteriaParser
+    </ID>
+    <ID>TooManyFunctions:RedisStorage.kt$RedisStorage&lt;ID : Any, T : Any> : Storage</ID>
+    <ID>TooManyFunctions:Repository.kt$Repository&lt;T : Any, ID : Any></ID>
+    <ID>TooManyFunctions:RuntimeCriteriaParser.kt$RuntimeCriteriaParser&lt;T : Any> :
+      CriteriaParser
+    </ID>
+    <ID>TooManyFunctions:SimpleCachedRepository.kt$SimpleCachedRepository&lt;T : Any, ID : Any> :
+      Repository
+    </ID>
+    <ID>TooManyFunctions:SimpleInMemoryRepository.kt$SimpleInMemoryRepository&lt;T : Any, ID : Any>
+      : InMemoryRepository
+    </ID>
+    <ID>TooManyFunctions:SimpleR2DBCRepository.kt$SimpleR2DBCRepository&lt;T : Any, ID : Any> :
+      R2DBCRepository
+    </ID>
+    <ID>TooManyFunctions:Storage.kt$Storage&lt;ID : Any, T : Any></ID>
+    <ID>TooManyFunctions:TransactionalStorage.kt$TransactionalStorage&lt;ID : Any, T : Any> :
+      Storage
+    </ID>
+    <ID>Wrapping:com.astrum.data.cache.NestedQueryStorage.kt:3</ID>
+    <ID>Wrapping:com.astrum.data.cache.NestedStorage.kt:3</ID>
+    <ID>Wrapping:com.astrum.data.repository.r2dbc.R2DBCRepositoryBuilder.kt:82</ID>
+    <ID>Wrapping:com.astrum.data.repository.r2dbc.SimpleR2DBCRepository.kt:78</ID>
+    <ID>Wrapping:com.astrum.data.repository.r2dbc.SimpleR2DBCRepository.kt:82</ID>
+  </CurrentIssues>
+  <ManuallySuppressedIssues/>
+</SmellBaseline>

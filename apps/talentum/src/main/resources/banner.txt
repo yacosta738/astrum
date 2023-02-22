@@ -1,0 +1,8 @@
+${AnsiColor.GREEN} ████████╗ █████╗ ██╗     ███████╗███╗   ██╗████████╗██╗   ██╗███╗   ███╗
+${AnsiColor.GREEN} ╚══██╔══╝██╔══██╗██║     ██╔════╝████╗  ██║╚══██╔══╝██║   ██║████╗ ████║
+${AnsiColor.GREEN}    ██║   ███████║██║     █████╗  ██╔██╗ ██║   ██║   ██║   ██║██╔████╔██║
+${AnsiColor.GREEN}    ██║   ██╔══██║██║     ██╔══╝  ██║╚██╗██║   ██║   ██║   ██║██║╚██╔╝██║
+${AnsiColor.GREEN}    ██║   ██║  ██║███████╗███████╗██║ ╚████║   ██║   ╚██████╔╝██║ ╚═╝ ██║
+${AnsiColor.GREEN}    ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝
+${AnsiColor.BRIGHT_BLUE}:: Astrum 🤠  :: Running Spring Boot 🚀 ${spring-boot.version} ::
+:: creator: https://www.yunielacosta.com ::${AnsiColor.DEFAULT}

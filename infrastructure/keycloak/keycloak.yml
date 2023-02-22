@@ -1,0 +1,26 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+version: '3.8'
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:19.0.1
+    container_name: keycloak
+    restart: unless-stopped
+    command: [ 'start-dev --import-realm' ]
+    volumes:
+      - ./realm-config:/opt/keycloak/data/import
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak_db
+      DB_SCHEMA: public
+      DB_USER: my_admin
+      DB_PASSWORD: my_password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HTTP_PORT: 9080
+      KC_HTTPS_PORT: 9443
+    ports:
+      - "9080:9080"
+      - "9443:9443"
+    depends_on:
+      - postgres

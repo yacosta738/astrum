@@ -1,0 +1,44 @@
+com:
+  astrum:
+    springaddons:
+      security:
+        issuers[0]:
+          location: ${JWT_ISSUER_URI}
+          authorities:
+            claims: realm_access.roles,resource_access.spring-addons-public.roles,resource_access.spring-addons-confidential.roles
+        cors[0]:
+          path: /${API_PATH}/**
+          allowed-origins: https://localhost,https://localhost:8100,https://localhost:4200
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+      additional-exclude: static/**
+    livereload:
+      enabled: false
+  jackson:
+    serialization:
+      indent-output: true
+  neo4j:
+    pool:
+      metrics-enabled: true
+    uri: bolt://localhost:7687
+    authentication:
+      username: neo4j
+      password: ${NEO4J_PASSWORD:margin-saturn-presto-saga-slogan-8117}
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+        web: DEBUG
+    sun.rmi.transport.tcp: ERROR
+
+app:
+  security:
+    content-security-policy: "default-src 'self'; frame-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:"
+    oauth2:
+      audience:
+        - account
+        - api://default

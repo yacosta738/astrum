@@ -1,0 +1,6 @@
+# ignore all inside of this directory exept the file neo4j.yml
+conf
+data
+import
+logs
+plugins
