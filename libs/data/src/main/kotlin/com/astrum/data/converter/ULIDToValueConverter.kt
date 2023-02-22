@@ -2,6 +2,8 @@ package com.astrum.data.converter
 
 import com.astrum.data.annotation.ConverterScope
 import com.astrum.ulid.ULID
+import org.neo4j.driver.Value
+import org.neo4j.driver.Values
 import org.springframework.core.convert.TypeDescriptor
 import org.springframework.core.convert.converter.GenericConverter
 import org.springframework.data.convert.WritingConverter
@@ -10,11 +12,17 @@ import org.springframework.stereotype.Component
 @Component
 @WritingConverter
 @ConverterScope(ConverterScope.Type.NEO4J)
-class ULIDToBinaryStringConverter : GenericConverter {
-    override fun getConvertibleTypes(): MutableSet<GenericConverter.ConvertiblePair> {
-        return mutableSetOf(
-            GenericConverter.ConvertiblePair(ULID::class.java, String::class.java),
-            GenericConverter.ConvertiblePair(String::class.java, ULID::class.java)
+class ULIDToValueConverter : GenericConverter {
+    override fun getConvertibleTypes(): Set<GenericConverter.ConvertiblePair> {
+        return setOf(
+            GenericConverter.ConvertiblePair(
+                ULID::class.java,
+                Value::class.java
+            ),
+            GenericConverter.ConvertiblePair(
+                Value::class.java,
+                ULID::class.java
+            )
         )
     }
 
@@ -23,12 +31,13 @@ class ULIDToBinaryStringConverter : GenericConverter {
         sourceType: TypeDescriptor,
         targetType: TypeDescriptor
     ): Any {
+        if (source == null) {
+            return Values.NULL
+        }
         return if (ULID::class.java.isAssignableFrom(sourceType.type)) {
-            (source as ULID).toString()
-        } else if (String::class.java.isAssignableFrom(sourceType.type)) {
-            ULID.fromString(source as String)
+            Values.value((source as ULID).toBytes())
         } else {
-            require(false) { "Unsupported type: $sourceType" }
+            ULID.fromBytes((source as Value).asByteArray())
         }
     }
 }

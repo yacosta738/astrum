@@ -31,7 +31,9 @@ class Neo4jConfiguration(
         val converters = applicationContext.getBeansOfType(GenericConverter::class.java)
             .values
             .filter {
-                it.javaClass.annotations.any { annotation -> annotation is WritingConverter || annotation is ReadingConverter }
+                it.javaClass.annotations.any { annotation ->
+                    annotation is WritingConverter || annotation is ReadingConverter
+                }
             }
             .filter {
                 val scope = it.javaClass.annotations.filterIsInstance<ConverterScope>()
