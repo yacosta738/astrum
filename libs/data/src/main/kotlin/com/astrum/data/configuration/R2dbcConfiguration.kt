@@ -22,10 +22,12 @@ class R2dbcConfiguration(
         val converterList = mutableListOf<Converter<*, *>>()
         val converters = applicationContext.getBeansOfType(Converter::class.java)
             .values
-            .filter { it.javaClass.annotations.any { it is WritingConverter || it is ReadingConverter } }
+            .filter {
+                it.javaClass.annotations.any { annotation -> annotation is WritingConverter || annotation is ReadingConverter }
+            }
             .filter {
                 val scope = it.javaClass.annotations.filterIsInstance<ConverterScope>()
-                scope.isEmpty() || scope.any { it.type == ConverterScope.Type.R2DBC }
+                scope.isEmpty() || scope.any { converterScope -> converterScope.type == ConverterScope.Type.R2DBC }
             }
         converterList.addAll(converters)
 
