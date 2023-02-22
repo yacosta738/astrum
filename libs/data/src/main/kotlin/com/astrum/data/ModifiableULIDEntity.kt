@@ -5,8 +5,8 @@ import java.time.Instant
 
 abstract class ModifiableULIDEntity : ULIDEntity(), Modifiable {
     @GeneratedValue
-    override var createdAt: Instant? = Instant.now()
+    override var createdAt: Instant? = null
 
     @GeneratedValue
-    override var updatedAt: Instant? = Instant.now()
+    override var updatedAt: Instant? = null
 }
