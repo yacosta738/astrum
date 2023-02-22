@@ -111,6 +111,7 @@ class MigrationManager(
 
     private suspend fun <T> logging(func: suspend () -> T): T {
         try {
+            logger.info("Start Migration")
             return func()
         } catch (e: RuntimeException) {
             logger.error(e.message, e)
