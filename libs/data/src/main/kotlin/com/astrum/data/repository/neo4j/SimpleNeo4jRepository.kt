@@ -15,9 +15,9 @@ import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.neo4j.cypherdsl.core.Statement
-import org.springframework.data.annotation.Id
 import org.springframework.data.domain.Sort
 import org.springframework.data.neo4j.core.ReactiveNeo4jTemplate
+import org.springframework.data.neo4j.core.schema.Id
 import reactor.core.scheduler.Schedulers
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty1
@@ -31,8 +31,9 @@ class SimpleNeo4jRepository<T : Any, ID : Any>(
     eventPublisher: EventPublisher? = null,
 ) : Neo4jRepository<T, ID> {
     private val idProperty = (
-            clazz.memberProperties.find { it -> it.javaField?.annotations?.find { it is Id } != null }
-                ?: throw PropertyOrFieldMustNotBeNull()
+            clazz.memberProperties.find {
+                it.javaField?.annotations?.find { id -> id is Id } != null
+            } ?: throw PropertyOrFieldMustNotBeNull()
             ) as KProperty1<T, ID?>
 
     private val eventPublisher = EventBroadcaster()
@@ -246,9 +247,12 @@ class SimpleNeo4jRepository<T : Any, ID : Any>(
 
         eventPublisher.publish(BeforeUpdateEvent(target, propertyDiff))
 
-        return template.save(target)
+        return template.findById(idProperty.get(target)!!, clazz.java)
             .subscribeOn(Schedulers.parallel())
             .awaitSingleOrNull()
+            ?.let { template.save(target) }
+            ?.subscribeOn(Schedulers.parallel())
+            ?.awaitSingleOrNull()
             ?.also { eventPublisher.publish(AfterUpdateEvent(it, propertyDiff)) }
     }
 

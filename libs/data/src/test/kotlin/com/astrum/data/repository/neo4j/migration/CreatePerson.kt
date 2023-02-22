@@ -9,7 +9,9 @@ class CreatePerson(
     private val neo4jTemplate: ReactiveNeo4jTemplate
 ) : Migration {
     override suspend fun up() {
-        neo4jTemplate.save(Person("test", 10)).awaitFirstOrNull()
+        val person = Person("test", 10)
+        println("Create Person $person with id ${person.id}")
+        neo4jTemplate.save<Person>(person).awaitFirstOrNull()
     }
 
     override suspend fun down() {
