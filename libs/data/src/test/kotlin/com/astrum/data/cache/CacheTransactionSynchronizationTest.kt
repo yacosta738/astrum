@@ -1,0 +1,136 @@
+package com.astrum.data.cache
+
+import com.astrum.coroutine.test.CoroutineTestHelper
+import com.astrum.data.WeekProperty
+import com.astrum.data.dummy.DummyPerson
+import com.astrum.data.entity.Person
+import com.astrum.data.transaction.ReactiveChainedTransactionManager
+import com.astrum.data.transaction.SuspendTransactionContextHolder
+import com.astrum.ulid.ULID
+import com.google.common.cache.CacheBuilder
+import io.mockk.every
+import io.mockk.mockk
+import kotlinx.coroutines.reactor.awaitSingleOrNull
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Test
+import org.springframework.transaction.ReactiveTransactionManager
+import org.springframework.transaction.reactive.*
+import reactor.core.publisher.Mono
+
+@Suppress("ReactiveStreamsUnusedPublisher")
+class CacheTransactionSynchronizationTest : CoroutineTestHelper() {
+    @Test
+    fun get() {
+        val cacheTransactionSynchronization =
+            CacheTransactionSynchronization<NestedStorage<Any, Any>>()
+        val transactionContext = mockk<TransactionContext>()
+
+        assertEquals(null, cacheTransactionSynchronization.get(transactionContext))
+    }
+
+    @Test
+    fun put() {
+        val cacheTransactionSynchronization =
+            CacheTransactionSynchronization<NestedStorage<Any, Any>>()
+        val transactionContext = mockk<TransactionContext>()
+        val storage = mockk<NestedStorage<Any, Any>>()
+
+        every { transactionContext.synchronizations } returns mutableSetOf()
+
+        assertEquals(null, cacheTransactionSynchronization.get(transactionContext))
+        cacheTransactionSynchronization.put(transactionContext, storage)
+        assertEquals(storage, cacheTransactionSynchronization.get(transactionContext))
+    }
+
+    @Test
+    fun afterCompletion() = blocking {
+        val reactiveChainedTransactionManager = ReactiveChainedTransactionManager()
+        val transactionalOperator = TransactionalOperator.create(reactiveChainedTransactionManager)
+        val cacheTransactionSynchronization =
+            CacheTransactionSynchronization<NestedStorage<ULID, Person>>()
+
+        val reactiveTransactionManager = mockk<ReactiveTransactionManager>()
+        val genericReactiveTransaction = GenericReactiveTransaction(
+            null,
+            false,
+            false,
+            false,
+            true,
+            null
+        )
+
+        every { reactiveTransactionManager.getReactiveTransaction(any()) } returns Mono.just(
+            genericReactiveTransaction
+        )
+        every { reactiveTransactionManager.commit(any()) } returns Mono.empty()
+        every { reactiveTransactionManager.rollback(any()) } returns Mono.empty()
+
+        reactiveChainedTransactionManager.registerTransactionManager(reactiveTransactionManager)
+
+        val idProperty = object : WeekProperty<Person, ULID?> {
+            override fun get(entity: Person): ULID {
+                return entity.id
+            }
+        }
+        val storage = PoolingNestedStorage(
+            Pool {
+                InMemoryStorage(
+                    { CacheBuilder.newBuilder() },
+                    idProperty
+                )
+            },
+            idProperty
+        )
+
+        transactionalOperator.executeAndAwait {
+            val child = storage.fork().also {
+                cacheTransactionSynchronization.put(
+                    SuspendTransactionContextHolder.getContext()!!,
+                    it
+                )
+            }
+            val person = DummyPerson.create()
+
+            assertNull(child.getIfPresent(person.id))
+            child.add(person)
+            assertEquals(person, child.getIfPresent(person.id))
+            assertNull(storage.getIfPresent(person.id))
+
+            cacheTransactionSynchronization.afterCompletion(TransactionSynchronization.STATUS_COMMITTED)
+                .awaitSingleOrNull()
+
+            val diff = child.checkout()
+            assertEquals(0, diff.size)
+            assertEquals(person, child.getIfPresent(person.id))
+            assertEquals(person, storage.getIfPresent(person.id))
+
+            assertNull(cacheTransactionSynchronization.get(SuspendTransactionContextHolder.getContext()!!))
+        }
+
+        transactionalOperator.executeAndAwait {
+            val child = storage.fork().also {
+                cacheTransactionSynchronization.put(
+                    SuspendTransactionContextHolder.getContext()!!,
+                    it
+                )
+            }
+            val person = DummyPerson.create()
+
+            assertNull(child.getIfPresent(person.id))
+            child.add(person)
+            assertEquals(person, child.getIfPresent(person.id))
+            assertNull(storage.getIfPresent(person.id))
+
+            cacheTransactionSynchronization.afterCompletion(TransactionSynchronization.STATUS_ROLLED_BACK)
+                .awaitSingleOrNull()
+
+            val diff = child.checkout()
+            assertEquals(0, diff.size)
+            assertNull(child.getIfPresent(person.id))
+            assertNull(storage.getIfPresent(person.id))
+
+            assertNull(cacheTransactionSynchronization.get(SuspendTransactionContextHolder.getContext()!!))
+        }
+    }
+}
