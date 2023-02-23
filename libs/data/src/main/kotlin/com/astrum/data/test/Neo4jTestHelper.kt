@@ -1,5 +1,6 @@
 package com.astrum.data.test
 
+import com.astrum.data.converter.ULIDToValueConverter
 import org.neo4j.configuration.GraphDatabaseSettings
 import org.neo4j.configuration.GraphDatabaseSettings.DEFAULT_DATABASE_NAME
 import org.neo4j.dbms.api.DatabaseManagementService
@@ -11,6 +12,7 @@ import org.neo4j.graphdb.GraphDatabaseService
 import org.springframework.data.neo4j.config.Neo4jEntityScanner
 import org.springframework.data.neo4j.core.ReactiveNeo4jClient
 import org.springframework.data.neo4j.core.ReactiveNeo4jTemplate
+import org.springframework.data.neo4j.core.convert.Neo4jConversions
 import org.springframework.data.neo4j.core.mapping.Neo4jMappingContext
 import java.io.File
 import java.time.Duration
@@ -27,15 +29,17 @@ class Neo4jTestHelper : ResourceTestHelper {
             .setConfig(GraphDatabaseSettings.transaction_timeout, Duration.ofSeconds(60))
             .setConfig(GraphDatabaseSettings.preallocate_logical_logs, true).build()
 
-
     override fun setUp() {
         driver =
             GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "password"))
         reactiveNeo4jClient = ReactiveNeo4jClient.create(driver)
         val graphDb: GraphDatabaseService = managementService.database(DEFAULT_DATABASE_NAME)
 
-        val ctx = Neo4jMappingContext.builder().build()
+        val ctx = Neo4jMappingContext.builder()
+            .withNeo4jConversions(Neo4jConversions(setOf(ULIDToValueConverter())))
+            .build()
         ctx.setInitialEntitySet(Neo4jEntityScanner.get().scan("com.astrum.data.entity"))
+
         reactiveNeo4jTemplate =
             ReactiveNeo4jTemplate(reactiveNeo4jClient, ctx)
         if (graphDb.isAvailable) {
