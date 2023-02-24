@@ -53,9 +53,11 @@ dependencies {
     implementation("org.apache.commons:commons-collections4:$apache_commons_collections_version")
     implementation("commons-validator:commons-validator:$apache_commons_validator_version")
 
-
+    // T E S T   D E P E N D E N C I E S
     implementation("org.junit.jupiter:junit-jupiter-api")
     runtimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
 }
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src/main")
