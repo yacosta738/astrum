@@ -100,20 +100,32 @@ class SimpleNeo4jRepository<T : Any, ID : Any>(
         if (limit != null && limit <= 0) {
             return emptyFlow()
         }
-
         return criteria?.let {
             template.findAll(it, clazz.java)
                 .subscribeOn(Schedulers.parallel())
                 .asFlow()
-        } ?: template.findAll(clazz.java)
-            .subscribeOn(Schedulers.parallel())
-            .asFlow()
+        } ?: findAll()
     }
 
     override suspend fun findOne(criteria: Statement): T? {
-        val parameters = mapOf<String, Any>()
+        val allData = template.findAll(clazz.java)
+            .subscribeOn(Schedulers.parallel())
+            .asFlow()
+            .toList()
+        println("clazz: ${clazz.java}")
+        println("allData: $allData")
+        println("cypher: ${criteria.cypher}")
+        println("parameters: ${criteria.parameters}")
+        println("parameterNames: ${criteria.parameterNames}")
+        println("context: ${criteria.context}")
+        println("identifiableExpressions: ${criteria.identifiableExpressions}")
+        criteria.identifiableExpressions.forEach {
+            println("isTrue: ${it.isTrue}")
+            println("isNull: ${it.isNull}")
+            println("isEmpty: ${it.isEmpty}")
+        }
 
-        return template.findOne(criteria, parameters, clazz.java)
+        return template.findOne(criteria.cypher, criteria.parameters, clazz.java)
             .subscribeOn(Schedulers.parallel())
             .awaitSingleOrNull()
     }
@@ -136,7 +148,7 @@ class SimpleNeo4jRepository<T : Any, ID : Any>(
         return criteria?.let {
             template.count(it)
                 .subscribeOn(Schedulers.parallel())
-                .awaitSingle()
+                .awaitFirstOrNull()
         } ?: template.count(clazz.java)
             .subscribeOn(Schedulers.parallel())
             .awaitSingle()

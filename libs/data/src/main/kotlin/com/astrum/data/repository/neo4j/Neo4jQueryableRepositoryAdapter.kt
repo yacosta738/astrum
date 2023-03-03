@@ -51,7 +51,7 @@ class Neo4jQueryableRepositoryAdapter<T : Any, ID : Any>(
         offset: Long?,
         sort: Sort?
     ): Flow<T> {
-        TODO("Not yet implemented")
+        return parser.parse(criteria).let { delegator.updateAll(it, patch, limit, offset, sort) }
     }
 
     override suspend fun update(criteria: Criteria, patch: SuspendPatch<T>): T? {

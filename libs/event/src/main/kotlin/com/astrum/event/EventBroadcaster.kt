@@ -8,6 +8,7 @@ class EventBroadcaster : EventPublisher {
     }
 
     override suspend fun <E : Any> publish(event: E) {
+        println("EventBroadcaster.publish: $event")
         eventPublishers.forEach {
             it.publish(event)
         }

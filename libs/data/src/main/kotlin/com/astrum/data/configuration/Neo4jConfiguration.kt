@@ -28,6 +28,9 @@ class Neo4jConfiguration(
 
     @Bean
     override fun neo4jConversions(): Neo4jConversions {
+        // print all beans from application context
+        println("All beans from application context:")
+        applicationContext.beanDefinitionNames.forEach { println(it) }
         val converters = applicationContext.getBeansOfType(GenericConverter::class.java)
             .values
             .filter {
@@ -57,6 +60,9 @@ class Neo4jConfiguration(
      */
     @Bean
     override fun driver(): Driver {
-        return GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "password"))
+        val uri = System.getenv("NEO4J_URI") ?: "bolt://localhost:7687"
+        val username = System.getenv("NEO4J_USERNAME") ?: "neo4j"
+        val password = System.getenv("NEO4J_PASSWORD") ?: "password"
+        return GraphDatabase.driver(uri, AuthTokens.basic(username, password))
     }
 }
