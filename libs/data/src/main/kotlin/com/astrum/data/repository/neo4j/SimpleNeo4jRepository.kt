@@ -108,24 +108,8 @@ class SimpleNeo4jRepository<T : Any, ID : Any>(
     }
 
     override suspend fun findOne(criteria: Statement): T? {
-        val allData = template.findAll(clazz.java)
-            .subscribeOn(Schedulers.parallel())
-            .asFlow()
-            .toList()
-        println("clazz: ${clazz.java}")
-        println("allData: $allData")
-        println("cypher: ${criteria.cypher}")
-        println("parameters: ${criteria.parameters}")
-        println("parameterNames: ${criteria.parameterNames}")
-        println("context: ${criteria.context}")
-        println("identifiableExpressions: ${criteria.identifiableExpressions}")
-        criteria.identifiableExpressions.forEach {
-            println("isTrue: ${it.isTrue}")
-            println("isNull: ${it.isNull}")
-            println("isEmpty: ${it.isEmpty}")
-        }
 
-        return template.findOne(criteria.cypher, criteria.parameters, clazz.java)
+        return template.findOne(criteria, criteria.parameters, clazz.java)
             .subscribeOn(Schedulers.parallel())
             .awaitSingleOrNull()
     }

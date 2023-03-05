@@ -8,29 +8,24 @@ import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.convert.converter.GenericConverter
+import org.springframework.core.env.Environment
 import org.springframework.data.convert.ReadingConverter
 import org.springframework.data.convert.WritingConverter
 import org.springframework.data.neo4j.config.AbstractReactiveNeo4jConfig
-import org.springframework.data.neo4j.core.ReactiveDatabaseSelectionProvider
 import org.springframework.data.neo4j.core.convert.Neo4jConversions
-import org.springframework.data.neo4j.core.transaction.ReactiveNeo4jTransactionManager
 import org.springframework.data.neo4j.repository.config.EnableReactiveNeo4jRepositories
-import org.springframework.data.neo4j.repository.config.ReactiveNeo4jRepositoryConfigurationExtension
-import org.springframework.transaction.ReactiveTransactionManager
 import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @Configuration
-@EnableReactiveNeo4jRepositories("com.astrum.data.repository.neo4j")
+@EnableReactiveNeo4jRepositories("com.astrum")
 @EnableTransactionManagement
 class Neo4jConfiguration(
-    private val applicationContext: ApplicationContext
+    private val applicationContext: ApplicationContext,
+    private val env: Environment
 ) : AbstractReactiveNeo4jConfig() {
 
     @Bean
     override fun neo4jConversions(): Neo4jConversions {
-        // print all beans from application context
-        println("All beans from application context:")
-        applicationContext.beanDefinitionNames.forEach { println(it) }
         val converters = applicationContext.getBeansOfType(GenericConverter::class.java)
             .values
             .filter {
@@ -44,15 +39,6 @@ class Neo4jConfiguration(
             }
         return Neo4jConversions(converters)
     }
-
-    @Bean(ReactiveNeo4jRepositoryConfigurationExtension.DEFAULT_TRANSACTION_MANAGER_BEAN_NAME)
-    fun transactionManager(
-        driver: Driver,
-        databaseNameProvider: ReactiveDatabaseSelectionProvider
-    ): ReactiveTransactionManager {
-        return ReactiveNeo4jTransactionManager(driver, databaseNameProvider)
-    }
-
     /**
      * The driver to be used for interacting with Neo4j.
      *
@@ -60,9 +46,9 @@ class Neo4jConfiguration(
      */
     @Bean
     override fun driver(): Driver {
-        val uri = System.getenv("NEO4J_URI") ?: "bolt://localhost:7687"
-        val username = System.getenv("NEO4J_USERNAME") ?: "neo4j"
-        val password = System.getenv("NEO4J_PASSWORD") ?: "password"
+        val uri = env.getProperty("spring.data.neo4j.uri") ?: "bolt://localhost:7687"
+        val username = env.getProperty("spring.data.neo4j.username") ?: "neo4j"
+        val password = env.getProperty("spring.data.neo4j.password") ?: "password"
         return GraphDatabase.driver(uri, AuthTokens.basic(username, password))
     }
 }

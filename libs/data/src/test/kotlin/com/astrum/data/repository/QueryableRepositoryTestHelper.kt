@@ -86,12 +86,6 @@ abstract class QueryableRepositoryTestHelper(
             .let { personRepository.create(it) }
         val patch = DummyPerson.create()
 
-        println("person: $person")
-        println("patch: $patch")
-
-        val all = personRepository.findAll().toList()
-        println("all: $all")
-
         val updatedPerson = personRepository.updateOrFail(
             where(Person::name).`is`(person.name)
         ) {
