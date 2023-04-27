@@ -31,7 +31,7 @@ dependencies {
     // D A T A B A S E S
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
-    implementation("eu.michael-simons.neo4j:neo4j-migrations-spring-boot-starter:2.0.3")
+    implementation("eu.michael-simons.neo4j:neo4j-migrations-spring-boot-starter:2.2.3")
 
     implementation("io.r2dbc:r2dbc-h2")
     implementation("io.r2dbc:r2dbc-pool")
