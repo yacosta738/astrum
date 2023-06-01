@@ -2,7 +2,7 @@ plugins {
     id("com.gradle.enterprise") version("3.10.3")
 }
 
-rootProject.name = "Astrum"
+rootProject.name = "astrum"
 
 val apps = File("apps")
 val libs = File("libs")

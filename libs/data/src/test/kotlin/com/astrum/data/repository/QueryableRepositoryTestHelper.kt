@@ -105,6 +105,10 @@ abstract class QueryableRepositoryTestHelper(
             .let { personRepository.create(it) }
         val patch = DummyPerson.create()
 
+        // Dummy test to check if the updateAll method works
+//        val allDummyPersonsList = personRepository.findAll(where(Person::name).`is`(person.name)).toList()
+//        assertEquals(1, allDummyPersonsList.size)
+
         val updatedPersons = personRepository.updateAll(
             where(Person::name).`is`(person.name),
             Patch.with {
@@ -112,6 +116,9 @@ abstract class QueryableRepositoryTestHelper(
                 it.age = patch.age
             }
         ).toList()
+        // Dummy test to check if the updateAll method works
+//        val dummyPersonList = personRepository.findAll(where(Person::name).`is`(person.name)).toList()
+//        assertEquals(1, dummyPersonList.size)
 
         assertEquals(1, updatedPersons.size)
         val updatedPerson = updatedPersons[0]

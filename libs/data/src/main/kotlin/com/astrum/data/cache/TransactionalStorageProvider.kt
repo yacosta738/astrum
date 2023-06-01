@@ -36,7 +36,7 @@ class TransactionalStorageProvider<S : GeneralNestedStorage<S>>(
                     cacheTransactionSynchronization.get(current) ?: run {
                         val child = storage.fork()
                         cacheTransactionSynchronization.put(current, child)
-                        logger.debug("Forked Cache Storage [parent: $storage, child: $child]")
+                        logger.debug("Forked Cache Storage [parent: {}, child: {}]", storage, child)
                         child
                     }
                 }
