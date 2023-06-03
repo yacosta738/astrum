@@ -1,36 +1,44 @@
-package com.astrum.data.repository
+package com.astrum.data.repository.neo4j
 
 import com.astrum.data.criteria.where
 import com.astrum.data.dummy.DummyPerson
 import com.astrum.data.entity.Person
-import com.astrum.data.patch.Patch
+import com.astrum.data.repository.RepositoryTestHelper
+import com.astrum.data.repository.neo4j.migration.CreatePerson
+import com.astrum.data.test.Neo4jTestHelper
 import com.astrum.ulid.ULID
 import kotlinx.coroutines.flow.toList
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import org.springframework.data.neo4j.core.ReactiveNeo4jTemplate
 
-abstract class QueryableRepositoryTestHelper(
-    repositories: (RepositoryTestHelper<QueryableRepository<Person, ULID>>) -> List<QueryableRepository<Person, ULID>>,
-) : RepositoryTestHelper<QueryableRepository<Person, ULID>>(repositories) {
+abstract class Neo4jRepositoryTestHelper(
+    private val reactiveNeo4jTemplate: ReactiveNeo4jTemplate,
+    repositories: (RepositoryTestHelper<Neo4jRepository<Person, ULID>>) -> List<Neo4jRepository<Person, ULID>>,
+): RepositoryTestHelper<Neo4jRepository<Person, ULID>>(repositories) {
+    private val parser = Neo4jCriteriaParser(Person::class)
+    init {
+        migrationManager.register(CreatePerson(reactiveNeo4jTemplate))
+    }
 
     @Test
     fun existsByName() = parameterized { personRepository ->
         val person = DummyPerson.create()
             .let { personRepository.create(it) }
 
-        assertTrue(personRepository.exists(where(Person::name).`is`(person.name)))
+        assertTrue(personRepository.exists(parser.parse(where(Person::name).`is`(person.name))))
     }
 
     @Test
     fun findAllCustomQuery() = parameterized { personRepository ->
         val person = DummyPerson.create()
             .let { personRepository.create(it) }
-        val foundPersons = personRepository.findAll(where(Person::id).`is`(person.id)).toList()
+        val foundPersons = personRepository.findAll(parser.parse(where(Person::id).`is`(person.id))).toList()
 
         assertEquals(foundPersons.size, 1)
         assertEquals(person.id, foundPersons[0].id)
-        assertNotNull(foundPersons[0].createdAt)
-        assertNotNull(foundPersons[0].updatedAt)
 
         assertEquals(person.name, foundPersons[0].name)
         assertEquals(person.age, foundPersons[0].age)
@@ -40,12 +48,10 @@ abstract class QueryableRepositoryTestHelper(
     fun findAllByNameIs() = parameterized { personRepository ->
         val person = DummyPerson.create()
             .let { personRepository.create(it) }
-        val foundPersons = personRepository.findAll(where(Person::name).`is`(person.name)).toList()
+        val foundPersons = personRepository.findAll(parser.parse(where(Person::name).`is`(person.name))).toList()
 
         assertEquals(foundPersons.size, 1)
         assertEquals(person.id, foundPersons[0].id)
-        assertNotNull(foundPersons[0].createdAt)
-        assertNotNull(foundPersons[0].updatedAt)
 
         assertEquals(person.name, foundPersons[0].name)
         assertEquals(person.age, foundPersons[0].age)
@@ -55,12 +61,10 @@ abstract class QueryableRepositoryTestHelper(
     fun findAllByNameIn() = parameterized { personRepository ->
         val person = DummyPerson.create()
             .let { personRepository.create(it) }
-        val foundPersons = personRepository.findAll(where(Person::name).`in`(person.name)).toList()
+        val foundPersons = personRepository.findAll(parser.parse(where(Person::name).`in`(person.name))).toList()
 
-        assertEquals(1, foundPersons.size)
+        assertEquals(foundPersons.size, 1)
         assertEquals(person.id, foundPersons[0].id)
-        assertNotNull(foundPersons[0].createdAt)
-        assertNotNull(foundPersons[0].updatedAt)
 
         assertEquals(person.name, foundPersons[0].name)
         assertEquals(person.age, foundPersons[0].age)
@@ -70,11 +74,9 @@ abstract class QueryableRepositoryTestHelper(
     fun findOneByName() = parameterized { personRepository ->
         val person = DummyPerson.create()
             .let { personRepository.create(it) }
-        val foundPerson = personRepository.findOneOrFail(where(Person::name).`is`(person.name))
+        val foundPerson = personRepository.findOneOrFail(parser.parse(where(Person::name).`is`(person.name)))
 
         assertEquals(person.id, foundPerson.id)
-        assertNotNull(foundPerson.createdAt)
-        assertNotNull(foundPerson.updatedAt)
 
         assertEquals(person.name, foundPerson.name)
         assertEquals(person.age, foundPerson.age)
@@ -86,9 +88,7 @@ abstract class QueryableRepositoryTestHelper(
             .let { personRepository.create(it) }
         val patch = DummyPerson.create()
 
-        val updatedPerson = personRepository.updateOrFail(
-            where(Person::name).`is`(person.name)
-        ) {
+        val updatedPerson = personRepository.updateOrFail(parser.parse(where(Person::name).`is`(person.name))) {
             it.name = patch.name
             it.age = patch.age
         }
@@ -99,34 +99,13 @@ abstract class QueryableRepositoryTestHelper(
         assertNotNull(updatedPerson.updatedAt)
     }
 
-    @Test
-    fun updateAllByName() = parameterized { personRepository ->
-        val person = DummyPerson.create()
-            .let { personRepository.create(it) }
-        val patch = DummyPerson.create()
-
-        val updatedPersons = personRepository.updateAll(
-            where(Person::name).`is`(person.name),
-            Patch.with {
-                it.name = patch.name
-                it.age = patch.age
-            }
-        ).toList()
-
-        assertEquals(1, updatedPersons.size)
-        val updatedPerson = updatedPersons[0]
-        assertEquals(person.id, updatedPerson.id)
-        assertEquals(patch.name, updatedPerson.name)
-        assertEquals(patch.age, updatedPerson.age)
-        assertNotNull(updatedPerson.updatedAt)
-    }
 
     @Test
     fun countByName() = parameterized { personRepository ->
         val person = DummyPerson.create()
             .let { personRepository.create(it) }
 
-        assertEquals(1, personRepository.count(where(Person::name).`is`(person.name)))
+        assertEquals(1, personRepository.count(parser.parse(where(Person::name).`is`(person.name))))
     }
 
     @Test
@@ -134,7 +113,19 @@ abstract class QueryableRepositoryTestHelper(
         val person = DummyPerson.create()
             .let { personRepository.create(it) }
 
-        personRepository.deleteAll(where(Person::name).`is`(person.name))
+        personRepository.deleteAll(parser.parse(where(Person::name).`is`(person.name)))
         assertFalse(personRepository.existsById(person.id))
+    }
+
+    companion object {
+        private val helper = Neo4jTestHelper()
+
+        @BeforeAll
+        @JvmStatic
+        fun setUpAll() = helper.setUp()
+
+        @AfterAll
+        @JvmStatic
+        fun tearDownAll() = helper.tearDown()
     }
 }

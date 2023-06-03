@@ -49,6 +49,7 @@ class Neo4jQueryableRepositoryAdapter<T : Any, ID : Any>(
         sort: Sort?
     ): Flow<T> {
         log.debug("Update all {} {} {} {}", criteria, limit, offset, sort)
+        print("updateAll from Neo4jQueryableRepository with $criteria $patch $limit $offset $sort")
         return parser.parse(criteria).let { delegator.updateAll(it, patch, limit, offset, sort) }
     }
 
@@ -60,6 +61,7 @@ class Neo4jQueryableRepositoryAdapter<T : Any, ID : Any>(
         sort: Sort?
     ): Flow<T> {
         log.debug("Update all {} {} {} {}", criteria, limit, offset, sort)
+        print("updateAll from Neo4jQueryableRepository with $criteria $patch $limit $offset $sort")
         return parser.parse(criteria).let { delegator.updateAll(it, patch, limit, offset, sort) }
     }
 

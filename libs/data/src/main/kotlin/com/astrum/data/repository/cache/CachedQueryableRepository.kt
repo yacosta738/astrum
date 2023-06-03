@@ -117,6 +117,7 @@ class CachedQueryableRepository<T : Any, ID : Any>(
         offset: Long?,
         sort: Sort?
     ): Flow<T> {
+        print("updateAll from CachedQueryRepository with $criteria $patch $limit $offset $sort")
         return updateAll(criteria, patch.async(), limit, offset, sort)
     }
 
@@ -127,6 +128,7 @@ class CachedQueryableRepository<T : Any, ID : Any>(
         offset: Long?,
         sort: Sort?
     ): Flow<T> {
+        print("updateAll from CachedQueryRepository with $criteria SuspendedPatch $patch $limit $offset $sort")
         if (limit != null && limit <= 0) {
             return emptyFlow()
         }

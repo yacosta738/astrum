@@ -115,13 +115,14 @@ class SimpleNeo4jRepository<T : Any, ID : Any>(
             offset,
             sort
         )
-
+        print("findAll from SimpleNeo4jRepository with $criteria $limit $offset $sort")
         if (limit != null && limit <= 0) {
             log.debug("Limit is $limit, returning empty flow")
             return emptyFlow()
         }
         return criteria?.let {
             log.debug("Finding all entities with criteria {}", criteria)
+            print("criteria is not null")
             template.findAll(it, clazz.java)
                 .subscribeOn(Schedulers.parallel())
                 .asFlow()
@@ -184,8 +185,10 @@ class SimpleNeo4jRepository<T : Any, ID : Any>(
             offset,
             sort
         )
+        print("updateAll from SimpleNeo4jRepository with $criteria $patch $limit $offset $sort")
         return findAll(criteria, limit, offset, sort)
             .flatMapMerge { entity ->
+                print("entity is $entity")
                 flow { emit(update(entity, patch)) }
             }
             .filterNotNull()
@@ -303,6 +306,7 @@ class SimpleNeo4jRepository<T : Any, ID : Any>(
 
     override suspend fun update(entity: T, patch: SuspendPatch<T>): T? {
         log.debug("Updating entity {} with patch {}", entity, patch)
+        print("update from SimpleNeo4jRepository with $entity $patch")
         val sourceDump = entityChapter.snapshot(entity)
         val target = patch.apply(entity)
         val targetDump = entityChapter.snapshot(target)
