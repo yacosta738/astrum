@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @ContextConfiguration(classes = [Neo4jConfiguration::class, ULIDToValueConverter::class])
 class SimpleNeo4jRepositoryTest @Autowired constructor(
     private var reactiveNeo4jTemplate: ReactiveNeo4jTemplate
-): Neo4jRepositoryTestHelper(
+) : Neo4jRepositoryTestHelper(
     reactiveNeo4jTemplate,
     repositories = {
         listOf(SimpleNeo4jRepository(reactiveNeo4jTemplate, Person::class))
