@@ -6,8 +6,6 @@ plugins {
     id("spring-conventions")
 }
 
-val kotlinLoggingVersion: String by rootProject.extra
-
 dependencies {
     // L O C A L   D E P E N D E N C I E S
     implementation(project(":shared"))
@@ -20,7 +18,6 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     // 3 R D   P A R T Y
-    implementation(libs.bundles.kotlinLogging)
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 

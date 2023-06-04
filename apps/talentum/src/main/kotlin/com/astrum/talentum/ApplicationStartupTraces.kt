@@ -1,18 +1,18 @@
 package com.astrum.talentum
 
 import com.astrum.common.domain.Generated
-import mu.KotlinLogging
+import org.slf4j.LoggerFactory
 import org.springframework.core.env.Environment
 import java.net.InetAddress
 import java.net.UnknownHostException
 import java.util.stream.Collectors
 import java.util.stream.Stream
 
-private val log = KotlinLogging.logger {}
 
 object ApplicationStartupTraces {
     private val SEPARATOR = "-".repeat(58)
     private const val BREAK = "\n"
+    private val log = LoggerFactory.getLogger(ApplicationStartupTracesBuilder::class.java)
     fun of(environment: Environment): String {
         return ApplicationStartupTracesBuilder()
             .append(BREAK)
