@@ -113,12 +113,7 @@ class R2DBCCriteriaParserTest {
             ),
             TestCase(
                 query = where(TestData::name).not("test")
-                    .and(
-                        listOf(
-                            where(TestData::name).not("test"),
-                            where(TestData::name).like("test")
-                        )
-                    ),
+                    .and(listOf(where(TestData::name).not("test"), where(TestData::name).like("test"))),
                 sql = "name != 'test' AND (name != 'test') AND (name LIKE 'test')"
             ),
             TestCase(
@@ -138,12 +133,7 @@ class R2DBCCriteriaParserTest {
             ),
             TestCase(
                 query = where(TestData::name).not("test")
-                    .or(
-                        listOf(
-                            where(TestData::name).not("test"),
-                            where(TestData::name).like("test")
-                        )
-                    ),
+                    .or(listOf(where(TestData::name).not("test"), where(TestData::name).like("test"))),
                 sql = "name != 'test' OR (name != 'test') OR (name LIKE 'test')"
             ),
             TestCase(

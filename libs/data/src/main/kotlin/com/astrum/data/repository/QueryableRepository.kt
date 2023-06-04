@@ -41,12 +41,7 @@ interface QueryableRepository<T : Any, ID : Any> : Repository<T, ID> {
 
     suspend fun count(criteria: Criteria? = null, limit: Int? = null): Long
 
-    suspend fun deleteAll(
-        criteria: Criteria? = null,
-        limit: Int? = null,
-        offset: Long? = null,
-        sort: Sort? = null
-    )
+    suspend fun deleteAll(criteria: Criteria? = null, limit: Int? = null, offset: Long? = null, sort: Sort? = null)
 
     companion object
 }

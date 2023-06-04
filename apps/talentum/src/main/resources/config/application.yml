@@ -43,6 +43,7 @@ logging:
         security: DEBUG
         web: DEBUG
     sun.rmi.transport.tcp: ERROR
+    root: debug
 
 app:
   security:

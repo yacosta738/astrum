@@ -6,6 +6,7 @@ import com.astrum.data.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import org.neo4j.cypherdsl.core.Statement
 import org.springframework.data.domain.Sort
+import org.springframework.dao.EmptyResultDataAccessException
 
 interface Neo4jRepository<T : Any, ID : Any> : Repository<T, ID> {
     suspend fun exists(criteria: Statement): Boolean
@@ -55,4 +56,36 @@ interface Neo4jRepository<T : Any, ID : Any> : Repository<T, ID> {
         offset: Long? = null,
         sort: Sort? = null
     )
+}
+
+suspend fun <T : Any, ID : Any> Neo4jRepository<T, ID>.findOneOrFail(criteria: Statement): T {
+    return findOne(criteria) ?: throw EmptyResultDataAccessException(1)
+}
+
+suspend fun <T : Any, ID : Any> Neo4jRepository<T, ID>.updateOrFail(
+    criteria: Statement,
+    patch: SuspendPatch<T>
+): T {
+    return update(criteria, patch) ?: throw EmptyResultDataAccessException(1)
+}
+
+suspend fun <T : Any, ID : Any> Neo4jRepository<T, ID>.updateOrFail(
+    criteria: Statement,
+    patch: Patch<T>
+): T {
+    return update(criteria, patch) ?: throw EmptyResultDataAccessException(1)
+}
+
+suspend fun <T : Any, ID : Any> Neo4jRepository<T, ID>.updateOrFail(
+    criteria: Statement,
+    patch: (entity: T) -> Unit
+): T {
+    return updateOrFail(criteria, Patch.with(patch))
+}
+
+suspend fun <T : Any, ID : Any> Neo4jRepository<T, ID>.update(
+    criteria: Statement,
+    patch: (entity: T) -> Unit
+): T? {
+    return update(criteria, Patch.with(patch))
 }

@@ -6,7 +6,6 @@ import com.astrum.util.username
 import net.datafaker.Faker
 import java.security.SecureRandom
 import java.util.*
-import kotlin.random.Random
 
 object DummyPerson {
     data class PersonTemplate(
@@ -19,7 +18,7 @@ object DummyPerson {
     fun create(template: PersonTemplate? = null): Person {
         return Person(
             name = resolveNotNull(template?.name) { faker.name().username(15) },
-            age = resolveNotNull(template?.age) { Random.nextInt() },
+            age = resolveNotNull(template?.age) { faker.number().numberBetween(0, 100) },
         )
     }
 }

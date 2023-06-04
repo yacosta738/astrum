@@ -27,11 +27,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
-    implementation("org.springframework:spring-tx:6.0.3")
+    implementation("org.springframework:spring-tx:6.0.5")
     // D A T A B A S E S
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
-    implementation("eu.michael-simons.neo4j:neo4j-migrations-spring-boot-starter:2.0.3")
 
     implementation("io.r2dbc:r2dbc-h2")
     implementation("io.r2dbc:r2dbc-pool")
@@ -54,9 +53,11 @@ dependencies {
     implementation("org.apache.commons:commons-collections4:$apache_commons_collections_version")
     implementation("commons-validator:commons-validator:$apache_commons_validator_version")
 
-
+    // T E S T   D E P E N D E N C I E S
     implementation("org.junit.jupiter:junit-jupiter-api")
     runtimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
 }
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src/main")
